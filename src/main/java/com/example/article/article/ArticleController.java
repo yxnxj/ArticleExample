@@ -22,8 +22,6 @@ public class ArticleController {
         rq.setAttr("articleDtos", articleDtos);
 
         rq.view("usr/article/list");
-
-
     }
 
     public void showWrite(Rq rq) {
@@ -37,5 +35,10 @@ public class ArticleController {
         long id = articleService.write(title, body);
 
         rq.appendBody("%d번 게시물이 생성 되었습니다.".formatted(id));
+    }
+
+    public void showArticle(Rq rq){
+        long id = 1l;
+        ArticleDto article = articleService.findById(id);
     }
 }
