@@ -20,8 +20,7 @@
         form.submit();
     }
 </script>
-
-<form onsubmit="ArticleForm__checkIsEmpty(this); return false;">
+<form method="POST" onsubmit="ArticleForm__checkIsEmpty(this); return false;">
     <div>
         <span>제목</span>
         <div>

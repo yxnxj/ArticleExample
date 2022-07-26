@@ -14,7 +14,7 @@ import java.lang.reflect.Member;
 @WebServlet("/usr/*")
 public class DispatchServlet extends HttpServlet {
     @Override
-    protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+    protected void doGet(HttpServletRequest req, HttpServletResponse resp){
         Rq rq = new Rq(req, resp);
 
         MemberController memberController = new MemberController();
@@ -27,17 +27,31 @@ public class DispatchServlet extends HttpServlet {
          */
         String url = req.getRequestURI();
 
-        switch(url){
-            case "/usr/article/list/free":
-                articleController.showList(rq);
+        switch (rq.getMethod()) {
+            case "GET":
+                switch (rq.getPath()) {
+                    case "/usr/article/list/free":
+                        articleController.showList(rq);
+                        break;
+                    case "/usr/article/write/free":
+                        articleController.showWrite(rq);
+                        break;
+                    case "/usr/member/login":
+                        memberController.showLogin(rq);
+                        break;
+                }
+            case "POST":
+                switch (rq.getPath()) {
+                    case "/usr/article/write/free":
+                        articleController.doWrite(rq);
+                        break;
+                }
                 break;
-            case "/usr/article/write/free":
-                articleController.showWrite(rq);
-                break;
-            case "/usr/member/login":
-                memberController.showLogin(rq);
-                break;
-
         }
+    }
+
+    @Override
+    protected void doPost(HttpServletRequest req, HttpServletResponse resp) {
+        doGet(req, resp);
     }
 }
