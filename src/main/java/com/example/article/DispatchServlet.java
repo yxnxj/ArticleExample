@@ -40,6 +40,7 @@ public class DispatchServlet extends HttpServlet {
                         memberController.showLogin(rq);
                         break;
                 }
+                break;
             case "POST":
                 switch (rq.getPath()) {
                     case "/usr/article/write/free":
