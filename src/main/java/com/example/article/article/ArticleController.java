@@ -34,7 +34,7 @@ public class ArticleController {
 
         long id = articleService.write(title, body);
 
-        rq.appendBody("%d번 게시물이 생성 되었습니다.".formatted(id));
+        rq.replace("/usr/article/list/free", "%d번 게시물이 생성 되었습니다.".formatted(id));
     }
 
 
@@ -42,14 +42,14 @@ public class ArticleController {
         long id = rq.getLongPathValueByIndex(1, 0);
 
         if (id == 0) {
-            rq.appendBody("번호를 입력해주세요.");
+            rq.historyBack("번호를 입력해주세요.");
             return;
         }
 
         ArticleDto articleDto = articleService.findById(id);
 
         if (articleDto == null) {
-            rq.appendBody("해당 글이 존재하지 않습니다.");
+            rq.historyBack("해당 글이 존재하지 않습니다.");
             return;
         }
 
@@ -61,20 +61,20 @@ public class ArticleController {
         long id = rq.getLongPathValueByIndex(1, 0);
 
         if (id == 0) {
-            rq.appendBody("번호를 입력해주세요.");
+            rq.historyBack("번호를 입력해주세요.");
             return;
         }
 
         ArticleDto articleDto = articleService.findById(id);
 
         if (articleDto == null) {
-            rq.appendBody("해당 글이 존재하지 않습니다.");
+            rq.historyBack("해당 글이 존재하지 않습니다.");
             return;
         }
 
         articleService.delete(id);
 
-        rq.appendBody("%d번 게시물이 삭제 되었습니다.".formatted(id));
+        rq.replace("/usr/article/list/free", "%d번 게시물이 삭제되었습니다.".formatted(id));
     }
 
     public void doModify(Rq rq) {
@@ -85,21 +85,21 @@ public class ArticleController {
 
         articleService.modify(id, title, body);
 
-        rq.appendBody("%d번 게시물이 수정 되었습니다.".formatted(id));
+        rq.replace("/usr/article/detail/free/%d".formatted(id), "%d번 게시물이 수정되었습니다.".formatted(id));
     }
 
     public void showModifyForm(Rq rq) {
         long id = rq.getLongPathValueByIndex(1, 0);
 
         if (id == 0) {
-            rq.appendBody("번호를 입력해주세요.");
+            rq.historyBack("번호를 입력해주세요.");
             return;
         }
 
         ArticleDto articleDto = articleService.findById(id);
 
         if (articleDto == null) {
-            rq.appendBody("해당 글이 존재하지 않습니다.");
+            rq.historyBack("해당 글이 존재하지 않습니다.");
             return;
         }
 
