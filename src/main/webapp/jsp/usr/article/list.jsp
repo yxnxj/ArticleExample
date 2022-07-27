@@ -2,6 +2,7 @@
 
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ include file="../common/head.jspf"%>
+
 <section>
     <div class="container px-3 mx-auto">
         <h1 class="font-bold text-lg">게시물 리스트</h1>

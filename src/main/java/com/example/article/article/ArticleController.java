@@ -19,7 +19,7 @@ public class ArticleController {
 //        articleDtos.add(new ArticleDto(2, "title 2", "body 2"));
 //        articleDtos.add(new ArticleDto(1, "title 1", "body 1"));
 
-        rq.setAttr("articleDtos", articleDtos);
+        rq.setAttr("articles", articleDtos);
 
         rq.view("usr/article/list");
     }
