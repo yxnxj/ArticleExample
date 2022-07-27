@@ -42,4 +42,18 @@ public class ArticleRepository {
 
         datum.remove(article);
     }
+
+    public void modify(long id, String title, String body) {
+        int index = -1;
+        ArticleDto article = new ArticleDto(id, title, body);
+        for(int i = 0; i< datum.size(); i++){
+            if(id == datum.get(i).getId()){
+                index = i;
+                break;
+            }
+        }
+        if(index == -1) return;
+
+        datum.set(index, article);
+    }
 }
