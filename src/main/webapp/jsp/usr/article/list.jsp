@@ -15,6 +15,7 @@
             <br>
 
             <a href="/usr/article/delete/free/<%=article.getId()%>">삭제</a>
+            <a href="/usr/article/modify/free/<%=article.getId()%>">수정</a>
         </li>
 
     <% } %>
